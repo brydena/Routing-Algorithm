@@ -7,6 +7,12 @@ Both numpy and pandas libraries are required to run this program, the installati
 
 The algorithm used is Dijkstra's algorithm (https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm). 
 
+The current speeds on my computer are above the 1 second threshold, ranging up towards 3 seconds for running where there is no route. I believe that is due to the lines:
+    for i in range(visitedSet.size):
+        unvisitedSet = unvisitedSet[unvisitedSet.NodeNames != visitedSet[i]]
+I would like to replace this call with a single line function that instead of using the visited set just removes the current node from the unvisited set. I unfortunatly will not have a chance to work on this today or tommorrow so am submitting with these shortcomings, but will probably fix it later this week (you'll be able to see all the details in the version history).
+
+
 Test cases I have run include:
 
 python.exe C:\\Users\\ABryden\\Documents\\Programming\\Python\\RoutingAlgorithm.py C:\\Users\\ABryden\\Documents\\Programming\\Python\\exmouth-links.dat J1001 J1032
@@ -24,3 +30,9 @@ The time taken is: 2.015185832977295
 C:\Users\ABryden>python.exe C:\\Users\\ABryden\\Documents\\Programming\\Python\\RoutingAlgorithm.py C:\\Users\\ABryden\\Documents\\Programming\\Python\\exmouth-links.dat J1001 X10399
 
 There is no route between J1001 and X10399
+
+python.exe C:\\Users\\ABryden\\Documents\\Programming\\Python\\RoutingAlgorithm.py C:\\Users\\ABryden\\Documents\\Programming\\Python\\exmouth-links.dat X1039 J1032
+
+The minimum route from X1039 to J1032 is: [8897.]
+The route taken is: ['X1039 J1038 J1036 J1035 J1034 J1033 J1029 J1021 J1020 J1019 J1002 J1001 J1031 J1022 J1008 J1032']
+The time taken is: 1.6246187686920166
