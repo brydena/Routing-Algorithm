@@ -28,7 +28,6 @@ x['Distance'] = Dist
 x['Route'] = allNodes
 
 
-visitedSet = np.array([0])
 curNode = initialNode
 indx = x.loc[x.NodeNames == curNode].index.values
 x.iloc[indx,1] = 0
@@ -41,17 +40,14 @@ while unvisitedSet.size > 0:
         distance = x.iloc[curIndex,1] + lst.iloc[linkIndex[i],2]
         toNode = lst.iloc[linkIndex[i],1]
         toIndex = x.loc[x.NodeNames == toNode].index.values
-        b = x.iloc[toIndex,1]
+        b = x.iloc[toIndex,1] #Temporary hold for the current distance
         curRoute = x.iloc[toIndex,2]
         prevRoute = x.iloc[curIndex,2]
         x.iloc[toIndex,1] = np.where(distance<b.squeeze(),distance,b) #Replace the values with new distances if smaller
         x.iloc[toIndex,2] = np.where(distance<b.squeeze(),prevRoute + ' '+ toNode,curRoute) #Store the route taken
-    unvisitedSet = x
-    visitedSet = np.append(visitedSet,curNode)
     if curNode == terminalNode:
         break
-    for i in range(visitedSet.size):
-        unvisitedSet = unvisitedSet[unvisitedSet.NodeNames != visitedSet[i]]
+    unvisitedSet = unvisitedSet[unvisitedSet.NodeNames != curNode] #Remove the visited nodes from the unvisitedSet
     if unvisitedSet.size > 0: #Catch if the set is now empty
         minDist = unvisitedSet['Distance'].idxmin() 
         curNode = x.iloc[minDist,0] 
