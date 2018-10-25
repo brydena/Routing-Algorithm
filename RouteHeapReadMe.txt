@@ -4,7 +4,7 @@ The RouteHeap.py file runs in the same way as RoutingAlgorithm.py but utilises h
 
 The routing algorithm function requires inputs of a data file of node positions and length, initial node and final node in that order. The call required is of the form:
 python RoutingAlgorithm.py exmouth-links.dat J1001 J1032
-This will return the minimum route length, the route taken and the time taken to compute this, assuming there is a path, otherwise the user wil be notified that no route exists between the two input nodes and the time taken to run will be given.
+This will return the minimum route length, the route taken and the time taken to compute this, assuming there is a path, otherwise the user will be notified that no route exists between the two input nodes and the time taken to run will be given.
 
 Both numpy and pandas libraries are required to run this program, the installation of these will depend on the means by which the user is attempting to run the program.
 
